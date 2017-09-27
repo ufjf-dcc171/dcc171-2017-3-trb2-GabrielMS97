@@ -1,8 +1,11 @@
 package br.ufjf.dcc171;
 
+import java.util.List;
+
 public class Mesa {
     private Integer numero;
     private String nome;
+    private List<Pedido> pedidos;
 
     public Mesa()
     {
@@ -33,6 +36,14 @@ public class Mesa {
     @Override
     public String toString() {
         return nome ;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
     }
     
     

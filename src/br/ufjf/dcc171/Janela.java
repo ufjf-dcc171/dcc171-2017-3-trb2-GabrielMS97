@@ -16,6 +16,9 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class Janela extends JFrame {
 
@@ -36,6 +39,7 @@ public class Janela extends JFrame {
         lstMesas.setModel(new MesasListModel(mesas));
         add(new JScrollPane(lstMesas), BorderLayout.CENTER);
         add(new JScrollPane(lstPedidos), BorderLayout.EAST);
+        lstMesas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
         painel1.add(addMesa);
         painel1.add(excluirMesa);
@@ -43,6 +47,19 @@ public class Janela extends JFrame {
         painel1.add(excluirItemPedido);
         painel1.add(fecharPedido);
         add(painel1, BorderLayout.WEST);
+        
+        lstMesas.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent lse) {
+                Mesa selected = lstMesas.getSelectedValue();
+                if (selected != null) {
+                    System.out.println(selected);
+                    lstPedidos.setModel((new PedidosListModel(selected.getPedidos())));
+                } else {
+                    lstPedidos.setModel((new DefaultListModel<>()));
+                }
+            }
+        });
 
         addPedido.addActionListener(new ActionListener() {
             @Override
