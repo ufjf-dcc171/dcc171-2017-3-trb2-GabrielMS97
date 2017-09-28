@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 public class JanelaPedidos extends JFrame {
 
     private final JLabel etiqueta1 = new JLabel("Selecione um item");
-    private final JComboBox<String> opcoes = new JComboBox<>(new String[]{"X-Burger - 2,50", "X-Frango - 3,50", "X-Bacon - 4,50"});
+    private final JComboBox<String> opcoes = new JComboBox<>(new String[]{"Hambúrguer - R$2,50","X-Burger - R$3,00", "X-Frango - R$3,50", "X-Bacon - R$4,50","X-Pernil - R$5,00", "X-Picanha - R$6,00" ,"X-Tudo - R$6,50", "Coca-Cola 500ml - R$4,00", "Coca-Cola 750ml - R$ 5,50", "Fanta 500ml - R$3,50", "Pepsi 500ml - R$3,50", "Sprite 500ml - R$3,00", "Sukita 500ml - R$2,50", "Suco Natural 500ml - R$2,00"});
     private final JLabel etiqueta2 = new JLabel("Informe a quantidade");
     private final JTextField txtQuantidade = new JTextField(5);
     private final JButton btnPedido = new JButton("Fazer Pedido");
@@ -46,7 +46,7 @@ public class JanelaPedidos extends JFrame {
         btnPedido.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                if("".equals(txtQuantidade.getText()))
+                if("".equals(txtQuantidade.getText()) || "0".equals(txtQuantidade.getText()))
                 {
                     JOptionPane.showMessageDialog(null, "O seu pedido está vazio","Pedido Vazio!!" ,JOptionPane.INFORMATION_MESSAGE);
                 }
