@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -25,7 +26,9 @@ public class JanelaPedidos extends JFrame {
     private final JButton btnPedido = new JButton("Fazer Pedido");
     private final JLabel etiquetaF1 = new JLabel("");
     private final JLabel etiquetaF2 = new JLabel("");
-    
+    private String itens[] = {"Hambúrguer - R$2,50","X-Burger - R$3,00", "X-Frango - R$3,50", "X-Bacon - R$4,50","X-Pernil - R$5,00", "X-Picanha - R$6,00" ,"X-Tudo - R$6,50", "Coca-Cola 500ml - R$4,00", "Coca-Cola 750ml - R$ 5,50", "Fanta 500ml - R$3,50", "Pepsi 500ml - R$3,50", "Sprite 500ml - R$3,00", "Sukita 500ml - R$2,50", "Suco Natural 500ml - R$2,00"};
+    private double precos[] = {2.50, 3.00, 3.50, 4.50, 5.00, 6.00, 6.50, 4.00, 5.50, 3.50, 3.50, 3.00, 2.50, 2.00};
+    private Janela janela;
 
     public JanelaPedidos() throws HeadlessException {
         super("Pedido");
@@ -52,11 +55,36 @@ public class JanelaPedidos extends JFrame {
                 }
                 else
                 {
+                    int qtd;
+                    int i = arrumaPedido();
+                    JOptionPane.showMessageDialog(null, "Pedido Computado: " + itens[i] + "\nQuantidade: " + txtQuantidade.getText() + "\nTotal: R$" + (precos[i] * Double.parseDouble(txtQuantidade.getText())), "Pedido", JOptionPane.INFORMATION_MESSAGE);
+                    
+                    qtd = Integer.parseInt(txtQuantidade.getText());
+                    
+                    Pedido p = new Pedido(qtd, itens[i], precos[i], new Date());
+                    janela.addPedido(p);
+                    
+                    System.out.println(qtd + " " + itens[i] + " " + precos[i] + new Date());
+                    
                     txtQuantidade.setText("");
                     txtQuantidade.requestFocus();
                 }              
             }
+
+            private int arrumaPedido() {
+                int i = 0;
+                while(opcoes.getSelectedItem() != itens[i])
+                {
+                    i++;
+                }
+                System.out.println(i);
+                return i;
+            }
         });
         
+    }
+
+    void setJanela(Janela aThis) {
+        this.janela = aThis;
     }
 }
