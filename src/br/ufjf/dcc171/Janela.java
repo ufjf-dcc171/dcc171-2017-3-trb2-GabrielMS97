@@ -33,11 +33,11 @@ public class Janela extends JFrame {
 
     public Janela(List<Mesa> sampleData) throws HeadlessException {
         super("Sistema de Gestão de Pedidos - Lanchonete");
-        setMinimumSize(new Dimension(800,350));
+        setMinimumSize(new Dimension(800, 350));
 
         this.mesas = sampleData;
         lstMesas.setModel(new MesasListModel(mesas));
-        lstMesas.setPreferredSize(new Dimension(120,250));
+        lstMesas.setPreferredSize(new Dimension(120, 250));
         add(new JScrollPane(lstMesas), BorderLayout.WEST);
         add(new JScrollPane(lstPedidos), BorderLayout.CENTER);
         lstMesas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -124,18 +124,26 @@ public class Janela extends JFrame {
                 Mesa selected = lstMesas.getSelectedValue();
                 if (selected == null) {
                     JOptionPane.showMessageDialog(null, "Selecione a mesa que terá a conta fechada!!", "Selecione uma mesa", JOptionPane.INFORMATION_MESSAGE);
-                } 
-                else
-                {
-                    if(selected.getPedidos().isEmpty())
-                    {
-                        JOptionPane.showMessageDialog(null, "Você não pode fechar a conta de uma mesa vazia!" , "Mesa vazia!!", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    if (selected.getPedidos().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Você não pode fechar a conta de uma mesa vazia!", "Mesa vazia!!", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        int resp = JOptionPane.showConfirmDialog(null, "Tem certeza de que deseja fechar a conta? \n" + "Uma vez fechada a conta, não será possível adicionar mais pedidos.", "Fechamento do pedido", JOptionPane.YES_NO_OPTION);
+                        if (resp == JOptionPane.YES_OPTION) {
+                            System.out.println(selected.getConta());
+                            int n = selected.getNumero();
+                            JOptionPane.showMessageDialog(null, "Conta fechada\n" + "Valor a pagar: R$" + selected.getConta(), "Conta Fechada", JOptionPane.INFORMATION_MESSAGE);
+                            mesas.remove(selected);
+                            Mesa m = new Mesa(n, "Mesa " + n);
+                            mesas.add(m);
+                            lstMesas.clearSelection();
+                            lstMesas.updateUI();
+                            lstPedidos.updateUI();
+                        }
                     }
-                    System.out.println(selected.getConta());
                 }
             }
         });
-
     }
 
     public void addPedido(Pedido p) {
