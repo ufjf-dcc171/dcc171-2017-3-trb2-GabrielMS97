@@ -6,6 +6,8 @@ import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -132,7 +134,10 @@ public class Janela extends JFrame {
                         if (resp == JOptionPane.YES_OPTION) {
                             System.out.println(selected.getConta());
                             int n = selected.getNumero();
-                            JOptionPane.showMessageDialog(null, "Conta fechada\n" + "Valor a pagar: R$" + selected.getConta(), "Conta Fechada", JOptionPane.INFORMATION_MESSAGE);
+                            DecimalFormat d = new DecimalFormat();
+                            d.setMaximumFractionDigits(2);
+                            d.setMinimumFractionDigits(2);
+                            JOptionPane.showMessageDialog(null, "Conta fechada\n" + "Valor a pagar: R$" + d.format(selected.getConta()), "Conta Fechada", JOptionPane.INFORMATION_MESSAGE);
                             mesas.remove(selected);
                             Mesa m = new Mesa(n, "Mesa " + n);
                             mesas.add(m);

@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -52,7 +53,10 @@ public class JanelaPedidos extends JFrame {
                     } else {
                         int qtd;
                         int i = arrumaPedido();
-                        JOptionPane.showMessageDialog(null, "Pedido Realizado: " + itens[i] + "\nQuantidade: " + txtQuantidade.getText() + "\nTotal: R$" + (precos[i] * Double.parseDouble(txtQuantidade.getText())), "Pedido", JOptionPane.INFORMATION_MESSAGE);
+                        DecimalFormat d = new  DecimalFormat();
+                        d.setMaximumFractionDigits(2);
+                        d.setMinimumFractionDigits(2);
+                        JOptionPane.showMessageDialog(null, "Pedido Realizado: " + itens[i] + "\nQuantidade: " + txtQuantidade.getText() + "\nTotal: R$" + d.format(precos[i] * Double.parseDouble(txtQuantidade.getText())), "Pedido", JOptionPane.INFORMATION_MESSAGE);
 
                         qtd = Integer.parseInt(txtQuantidade.getText());
 

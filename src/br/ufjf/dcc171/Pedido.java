@@ -1,5 +1,6 @@
 package br.ufjf.dcc171;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 
 public class Pedido {
@@ -63,7 +64,10 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return item + "| Quantidade: " + qtdItens + "| Valor total: " + qtdItens * preco + " | " + dataCriado;
+        DecimalFormat d = new DecimalFormat();
+        d.setMinimumFractionDigits(2);
+        d.setMaximumFractionDigits(2);
+        return item + "| Quantidade: " + qtdItens + "| Valor total: R$" + d.format(qtdItens * preco) + " | " + dataCriado;
     }
 
     
