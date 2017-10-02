@@ -67,7 +67,7 @@ public class JanelaPedidos extends JFrame {
 
                         janela.addPedido(p);
 
-                        System.out.println(qtd + " " + itens[i] + " " + precos[i] + new Date());
+                        //System.out.println(qtd + " " + itens[i] + " " + precos[i] + new Date());
 
                         txtQuantidade.setText("");
                         txtQuantidade.requestFocus();
@@ -83,7 +83,7 @@ public class JanelaPedidos extends JFrame {
                 while (opcoes.getSelectedItem() != itens[i]) {
                     i++;
                 }
-                System.out.println(i);
+                //System.out.println(i);
                 return i;
             }
         });

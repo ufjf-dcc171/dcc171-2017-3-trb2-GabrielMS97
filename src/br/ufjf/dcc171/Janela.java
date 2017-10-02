@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -56,7 +57,7 @@ public class Janela extends JFrame {
             public void valueChanged(ListSelectionEvent lse) {
                 Mesa selected = lstMesas.getSelectedValue();
                 if (selected != null) {
-                    System.out.println(selected);
+                    //System.out.println(selected);
                     lstPedidos.setModel(new PedidosListModel(selected.getPedidos()));
                 } else {
                     lstPedidos.setModel(new DefaultListModel<>());
@@ -132,18 +133,36 @@ public class Janela extends JFrame {
                     } else {
                         int resp = JOptionPane.showConfirmDialog(null, "Tem certeza de que deseja fechar a conta? \n" + "Uma vez fechada a conta, não será possível adicionar mais pedidos.", "Fechamento do pedido", JOptionPane.YES_NO_OPTION);
                         if (resp == JOptionPane.YES_OPTION) {
-                            System.out.println(selected.getConta());
-                            int n = selected.getNumero();
-                            DecimalFormat d = new DecimalFormat();
-                            d.setMaximumFractionDigits(2);
-                            d.setMinimumFractionDigits(2);
-                            JOptionPane.showMessageDialog(null, "Conta fechada\n" + "Valor a pagar: R$" + d.format(selected.getConta()), "Conta Fechada", JOptionPane.INFORMATION_MESSAGE);
-                            mesas.remove(selected);
-                            Mesa m = new Mesa(n, "Mesa " + n);
-                            mesas.add(m);
-                            lstMesas.clearSelection();
-                            lstMesas.updateUI();
-                            lstPedidos.updateUI();
+                            int g = JOptionPane.showConfirmDialog(null, "Podemos adicionar os 10% do Garçon?", "Gorjeta", JOptionPane.YES_NO_OPTION);
+                            if (g == JOptionPane.YES_OPTION) {
+                                double val = (selected.getConta() / 10);
+                                selected.setConta(val);
+                                //System.out.println(selected.getConta());
+                                int n = selected.getNumero();
+                                DecimalFormat d = new DecimalFormat();
+                                d.setMaximumFractionDigits(2);
+                                d.setMinimumFractionDigits(2);
+                                JOptionPane.showMessageDialog(null, "Conta fechada em: " + new Date() + "\nValor a pagar: R$" + d.format(selected.getConta()), "Conta Fechada", JOptionPane.INFORMATION_MESSAGE);
+                                mesas.remove(selected);
+                                Mesa m = new Mesa(n, "Mesa " + n);
+                                mesas.add(m);
+                                lstMesas.clearSelection();
+                                lstMesas.updateUI();
+                                lstPedidos.updateUI();
+                            } else {
+                                //System.out.println(selected.getConta());
+                                int n = selected.getNumero();
+                                DecimalFormat d = new DecimalFormat();
+                                d.setMaximumFractionDigits(2);
+                                d.setMinimumFractionDigits(2);
+                                JOptionPane.showMessageDialog(null, "Conta fechada em: "+ new Date() + "\nValor a pagar: R$" + d.format(selected.getConta()), "Conta Fechada", JOptionPane.INFORMATION_MESSAGE);
+                                mesas.remove(selected);
+                                Mesa m = new Mesa(n, "Mesa " + n);
+                                mesas.add(m);
+                                lstMesas.clearSelection();
+                                lstMesas.updateUI();
+                                lstPedidos.updateUI();
+                            }
                         }
                     }
                 }
