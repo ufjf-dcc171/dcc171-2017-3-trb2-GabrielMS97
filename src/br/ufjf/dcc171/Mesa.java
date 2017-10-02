@@ -7,6 +7,8 @@ public class Mesa {
     private Integer numero;
     private String nome;
     private List<Pedido> pedidos;
+    private boolean pedidoAberto = false;
+    private double conta = 0;
 
     public Mesa()
     {
@@ -37,7 +39,12 @@ public class Mesa {
 
     @Override
     public String toString() {
-        return nome ;
+        if(pedidoAberto == true)
+        {
+            return nome + " - Pedido Aberto";
+        }
+ 
+        return nome;
     }
 
     public void setPedidos(List<Pedido> pedidos) {
@@ -46,6 +53,22 @@ public class Mesa {
 
     public List<Pedido> getPedidos() {
         return pedidos;
+    }
+
+    public boolean isPedidoAberto() {
+        return pedidoAberto;
+    }
+
+    public void setPedidoAberto(boolean pedidoAberto) {
+        this.pedidoAberto = pedidoAberto;
+    }
+
+    public double getConta() {
+        return conta;
+    }
+
+    public void setConta(double conta) {
+        this.conta += conta;
     }
     
     

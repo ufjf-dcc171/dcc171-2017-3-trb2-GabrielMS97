@@ -22,9 +22,6 @@ public class Trabalho1Lab3 {
         Mesa mesa3 = new Mesa(3, "Mesa 3");
         Mesa mesa4 = new Mesa(4, "Mesa 4");
         
-        Pedido p1 = new Pedido(3, "AA", 3.0, new Date());
-        mesa1.getPedidos().add(p1);
-        
         List<Mesa> mesas = new ArrayList<>();
         mesas.add(mesa1);
         mesas.add(mesa2);

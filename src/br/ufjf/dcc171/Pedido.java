@@ -63,7 +63,8 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return item + "| Quantidade: " + qtdItens + "| Valor total: " + qtdItens * preco;
+        return item + "| Quantidade: " + qtdItens + "| Valor total: " + qtdItens * preco + " | " + dataCriado;
     }
+
     
 }
