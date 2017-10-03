@@ -85,11 +85,17 @@ public class Janela extends JFrame {
         btnAddMesa.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                Integer num;
-                num = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o número da mesa"));
-                Mesa m = new Mesa(num, "Mesa " + num);
-                mesas.add(m);
-                lstMesas.updateUI();
+                try {
+                    Integer num;
+                    num = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o número da mesa"));
+                    Mesa m = new Mesa(num, "Mesa " + num);
+                    mesas.add(m);
+                    lstMesas.updateUI();
+                }
+                catch(NumberFormatException e)
+                {
+                    JOptionPane.showMessageDialog(null, "Digite um número inteiro!!", "Erro!", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
@@ -155,7 +161,7 @@ public class Janela extends JFrame {
                                 DecimalFormat d = new DecimalFormat();
                                 d.setMaximumFractionDigits(2);
                                 d.setMinimumFractionDigits(2);
-                                JOptionPane.showMessageDialog(null, "Conta fechada em: "+ new Date() + "\nValor a pagar: R$" + d.format(selected.getConta()), "Conta Fechada", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(null, "Conta fechada em: " + new Date() + "\nValor a pagar: R$" + d.format(selected.getConta()), "Conta Fechada", JOptionPane.INFORMATION_MESSAGE);
                                 mesas.remove(selected);
                                 Mesa m = new Mesa(n, "Mesa " + n);
                                 mesas.add(m);

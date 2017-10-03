@@ -8,7 +8,6 @@ public class Pedido {
     private String item;
     private Double preco;
     private Date dataCriado;
-    private Date dataFechado;
     
     public Pedido()
     {
@@ -52,14 +51,6 @@ public class Pedido {
 
     public void setCriado(Date criado) {
         this.dataCriado = criado;
-    }
-
-    public Date getFechado() {
-        return dataFechado;
-    }
-
-    public void setFechado(Date fechado) {
-        this.dataFechado = fechado;
     }
 
     @Override
