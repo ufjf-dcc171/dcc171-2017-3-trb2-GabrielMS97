@@ -33,6 +33,7 @@ public class Janela extends JFrame {
     private final JList<Mesa> lstMesas = new JList<>(new DefaultListModel<>());
     private final JList<Pedido> lstPedidos = new JList<>(new DefaultListModel<>());
     private final JanelaPedidos jp = new JanelaPedidos();
+    private final JButton btnHistoricoPedidos = new JButton("Histórico de Pedidos");
 
     public Janela(List<Mesa> sampleData) throws HeadlessException {
         super("Sistema de Gestão de Pedidos - Lanchonete");
@@ -50,6 +51,7 @@ public class Janela extends JFrame {
         painel1.add(btnAddPedido);
         painel1.add(btnExcluirItemPedido);
         painel1.add(btnFecharConta);
+        painel1.add(btnHistoricoPedidos);
         add(painel1, BorderLayout.EAST);
 
         lstMesas.addListSelectionListener(new ListSelectionListener() {
@@ -172,6 +174,16 @@ public class Janela extends JFrame {
                         }
                     }
                 }
+            }
+        });
+        
+        btnHistoricoPedidos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+               JanelaHistorico jh = new JanelaHistorico();
+               jh.setLocationRelativeTo(null);
+               jh.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+               jh.setVisible(true);
             }
         });
     }
