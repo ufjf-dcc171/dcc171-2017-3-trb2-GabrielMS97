@@ -40,6 +40,7 @@ public class Janela extends JFrame {
     private final JanelaPedidos jp = new JanelaPedidos();
     private final JButton btnHistoricoPedidos = new JButton("Histórico de Pedidos");
     private final StringBuilder escritorArquivo = new StringBuilder();
+    private String garcom = "";
 
     public Janela(List<Mesa> sampleData) throws HeadlessException {
         super("Sistema de Gestão de Pedidos - Lanchonete");
@@ -99,9 +100,7 @@ public class Janela extends JFrame {
                     Mesa m = new Mesa(num, "Mesa " + num);
                     mesas.add(m);
                     lstMesas.updateUI();
-                }
-                catch(NumberFormatException e)
-                {
+                } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(null, "Digite um número inteiro!!", "Erro!", JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -149,6 +148,7 @@ public class Janela extends JFrame {
                         if (resp == JOptionPane.YES_OPTION) {
                             int g = JOptionPane.showConfirmDialog(null, "Podemos adicionar os 10% do Garçon?", "Gorjeta", JOptionPane.YES_NO_OPTION);
                             if (g == JOptionPane.YES_OPTION) {
+                                garcom = "SIM";
                                 double val = (selected.getConta() / 10);
                                 selected.setConta(val);
                                 //System.out.println(selected.getConta());
@@ -165,6 +165,7 @@ public class Janela extends JFrame {
                                 lstPedidos.updateUI();
                             } else {
                                 //System.out.println(selected.getConta());
+                                garcom = "NÃO";
                                 int n = selected.getNumero();
                                 DecimalFormat d = new DecimalFormat();
                                 d.setMaximumFractionDigits(2);
@@ -179,31 +180,38 @@ public class Janela extends JFrame {
                             }
                         }
                     }
-                    
+
                     FileWriter fw;
                     try {
                         fw = new FileWriter("historico.txt", true);
                         BufferedWriter bw = new BufferedWriter(fw);
+                        DecimalFormat d = new DecimalFormat();
+                        d.setMinimumFractionDigits(2);
+                        d.setMaximumFractionDigits(2);
                         escritorArquivo.append("Pedido na mesa " + selected.getNumero() + " || ");
-                        escritorArquivo.append("Valor final: " + selected.getConta() + " || ");
-                        escritorArquivo.append("Itens Pedidos " + selected.getPedidos()+ " || ");
+                        escritorArquivo.append("Valor final: R$" + d.format(selected.getConta()) + " || ");
+                        escritorArquivo.append("10% do garçon: " + garcom + " || ");
+                        escritorArquivo.append("Fechado em " + new Date());
+                        escritorArquivo.append("\n");
+                        escritorArquivo.append("Itens Pedidos " + selected.getPedidos());
+                        escritorArquivo.append("\n");
                         escritorArquivo.append("\n");
                         bw.write(escritorArquivo.toString());
                         bw.flush();
                     } catch (IOException ex) {
                         Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
-                    }     
+                    }
                 }
             }
         });
-        
+
         btnHistoricoPedidos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-               JanelaHistorico jh = new JanelaHistorico();
-               jh.setLocationRelativeTo(null);
-               jh.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-               jh.setVisible(true);
+                JanelaHistorico jh = new JanelaHistorico();
+                jh.setLocationRelativeTo(null);
+                jh.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                jh.setVisible(true);
             }
         });
     }

@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Mesa {
+
     private Integer numero;
     private String nome;
     private List<Pedido> pedidos;
     private double conta = 0;
 
-    public Mesa()
-    {
-        this(null,null);
+    public Mesa() {
+        this(null, null);
     }
-    
+
     public Mesa(Integer numero, String nome) {
         this.numero = numero;
         this.nome = nome;

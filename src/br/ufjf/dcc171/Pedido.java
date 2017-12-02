@@ -58,8 +58,6 @@ public class Pedido {
         DecimalFormat d = new DecimalFormat();
         d.setMinimumFractionDigits(2);
         d.setMaximumFractionDigits(2);
-        return item + "| Quantidade: " + qtdItens + "| Valor total: R$" + d.format(qtdItens * preco) + " | " + dataCriado;
+        return item + "| Quantidade: " + qtdItens + "| Valor total: R$" + d.format(qtdItens * preco);// + " | " + dataCriado;
     }
-
-    
 }
