@@ -5,15 +5,24 @@
  */
 package br.ufjf.dcc171;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+
 /**
  *
  * @author Gabriel
  */
 public class JanelaHistorico extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JanelaHistorico
-     */
+    private String linhaArquivo;
+    
     public JanelaHistorico() {
         super("Sistema de gestão de pedidos - Histórico de Pedidos");
         initComponents();
@@ -29,16 +38,21 @@ public class JanelaHistorico extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtHistorico = new javax.swing.JTextArea();
         btnCarregar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtHistorico.setColumns(20);
+        txtHistorico.setRows(5);
+        jScrollPane1.setViewportView(txtHistorico);
 
         btnCarregar.setText("Carregar Histórico");
+        btnCarregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCarregarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -66,10 +80,39 @@ public class JanelaHistorico extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    private void btnCarregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarregarActionPerformed
+        FileReader arquivo = null;
+        try {
+            arquivo = new FileReader("historico.txt");
+            BufferedReader br = new BufferedReader(arquivo);
+            StringBuilder sb = new StringBuilder();
+
+            try {
+                while ((linhaArquivo = br.readLine()) != null) {
+                    sb.append(linhaArquivo).append("\n");
+
+                }
+
+            } catch (IOException ex) {
+                Logger.getLogger(JanelaHistorico.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            txtHistorico.setText(sb.toString());
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(JanelaHistorico.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                arquivo.close();
+            } catch (IOException ex) {
+                Logger.getLogger(JanelaHistorico.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnCarregarActionPerformed
+
+/**
+ * @param args the command line arguments
+ */
+public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -80,16 +123,28 @@ public class JanelaHistorico extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+                
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JanelaHistorico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JanelaHistorico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JanelaHistorico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JanelaHistorico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaHistorico.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(JanelaHistorico.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(JanelaHistorico.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(JanelaHistorico.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -104,6 +159,6 @@ public class JanelaHistorico extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCarregar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea txtHistorico;
     // End of variables declaration//GEN-END:variables
 }
