@@ -13,7 +13,7 @@ public class Persistencia {
             try {
                 historico = new FileWriter("funcionamento.txt");        
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Não foi possível criar o diretório desejado");
+                JOptionPane.showMessageDialog(null, "Não foi possível criar o diretório desejado", "ERRO", JOptionPane.ERROR_MESSAGE);
             }
         }
 

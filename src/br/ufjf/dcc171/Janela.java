@@ -6,10 +6,15 @@ import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -34,6 +39,7 @@ public class Janela extends JFrame {
     private final JList<Pedido> lstPedidos = new JList<>(new DefaultListModel<>());
     private final JanelaPedidos jp = new JanelaPedidos();
     private final JButton btnHistoricoPedidos = new JButton("Histórico de Pedidos");
+    private final StringBuilder escritorArquivo = new StringBuilder();
 
     public Janela(List<Mesa> sampleData) throws HeadlessException {
         super("Sistema de Gestão de Pedidos - Lanchonete");
@@ -173,6 +179,20 @@ public class Janela extends JFrame {
                             }
                         }
                     }
+                    
+                    FileWriter fw;
+                    try {
+                        fw = new FileWriter("historico.txt", true);
+                        BufferedWriter bw = new BufferedWriter(fw);
+                        escritorArquivo.append("Pedido na mesa " + selected.getNumero() + " || ");
+                        escritorArquivo.append("Valor final: " + selected.getConta() + " || ");
+                        escritorArquivo.append("Itens Pedidos " + selected.getPedidos()+ " || ");
+                        escritorArquivo.append("\n");
+                        bw.write(escritorArquivo.toString());
+                        bw.flush();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+                    }     
                 }
             }
         });

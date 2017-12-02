@@ -1,1 +1,2 @@
-A
+﻿Pedido na mesa 2 || Valor final: 10.5 || Itens Pedidos [X-Frango - R$3,50| Quantidade: 3| Valor total: R$10,50 | Sat Dec 02 13:33:08 BRST 2017] || 
+Pedido na mesa 3 || Valor final: 5.5 || Itens Pedidos [Hambúrguer - R$2,50| Quantidade: 2| Valor total: R$5,00 | Sat Dec 02 13:34:19 BRST 2017] || 
