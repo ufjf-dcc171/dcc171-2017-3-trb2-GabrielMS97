@@ -1,0 +1,25 @@
+Pedido na mesa 1 || Valor final: R$81,95 || 10% do garçon: SIM
+Itens Pedidos [Hambúrguer - R$2,50| Quantidade: 12| Valor total: R$30,00, Coca-Cola 500ml - R$4,00| Quantidade: 7| Valor total: R$28,00, Sprite 500ml - R$3,00| Quantidade: 2| Valor total: R$6,00, Fanta 500ml - R$3,50| Quantidade: 3| Valor total: R$10,50]
+Aberto em 03/12/2017 11:09:32
+Fechado em 03/12/2017 11:09:58
+
+Pedido na mesa 3 || Valor final: R$13,20 || 10% do garçon: SIM
+Itens Pedidos [Coca-Cola 750ml - R$ 5,50| Quantidade: 1| Valor total: R$5,50, X-Tudo - R$6,50| Quantidade: 1| Valor total: R$6,50]
+Aberto em 03/12/2017 11:10:35
+Fechado em 03/12/2017 11:10:45
+
+Pedido na mesa 4 || Valor final: R$7,15 || 10% do garçon: SIM
+Itens Pedidos [X-Burger - R$3,00| Quantidade: 1| Valor total: R$3,00, Pepsi 500ml - R$3,50| Quantidade: 1| Valor total: R$3,50]
+Aberto em 03/12/2017 11:11:36
+Fechado em 03/12/2017 11:12:06
+
+Pedido na mesa 1 || Valor final: R$2,50 || 10% do garçon: NÃO
+Itens Pedidos [Hambúrguer - R$2,50| Quantidade: 1| Valor total: R$2,50]
+Aberto em 03/12/2017 11:13:11
+Fechado em 03/12/2017 11:13:26
+
+Pedido na mesa 1 || Valor final: R$5,00 || 10% do garçon: NÃO
+Itens Pedidos [Hambúrguer - R$2,50| Quantidade: 2| Valor total: R$5,00]
+Aberto em 03/12/2017 11:15:58
+Fechado em 03/12/2017 11:16:08
+

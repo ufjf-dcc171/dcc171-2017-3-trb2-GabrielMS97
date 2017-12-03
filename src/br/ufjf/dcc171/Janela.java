@@ -11,6 +11,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -39,7 +41,7 @@ public class Janela extends JFrame {
     private final JList<Pedido> lstPedidos = new JList<>(new DefaultListModel<>());
     private final JanelaPedidos jp = new JanelaPedidos();
     private final JButton btnHistoricoPedidos = new JButton("Histórico de Pedidos");
-    private final StringBuilder escritorArquivo = new StringBuilder();
+    //private final StringBuilder escritorArquivo = new StringBuilder();
     private String garcom = "";
 
     public Janela(List<Mesa> sampleData) throws HeadlessException {
@@ -79,7 +81,11 @@ public class Janela extends JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 Mesa selected = lstMesas.getSelectedValue();
-                selected.setAbertura(new Date());
+                Calendar c = Calendar.getInstance();
+                Date data = c.getTime();
+                SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                String s = fmt.format(data);
+                selected.setAbertura(s);
                 if (selected == null) {
                     JOptionPane.showMessageDialog(null, "Selecione a mesa que fez o pedido!!", "Selecione uma mesa", JOptionPane.INFORMATION_MESSAGE);
                 } else {
@@ -139,6 +145,7 @@ public class Janela extends JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 Mesa selected = lstMesas.getSelectedValue();
+                String fechamento = "";
                 if (selected == null) {
                     JOptionPane.showMessageDialog(null, "Selecione a mesa que terá a conta fechada!!", "Selecione uma mesa", JOptionPane.INFORMATION_MESSAGE);
                 } else {
@@ -157,7 +164,12 @@ public class Janela extends JFrame {
                                 DecimalFormat d = new DecimalFormat();
                                 d.setMaximumFractionDigits(2);
                                 d.setMinimumFractionDigits(2);
-                                JOptionPane.showMessageDialog(null, "Conta fechada em: " + new Date() + "\nValor a pagar: R$" + d.format(selected.getConta()), "Conta Fechada", JOptionPane.INFORMATION_MESSAGE);
+                                Calendar c = Calendar.getInstance();
+                                Date data = c.getTime();
+                                SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                                String s = fmt.format(data);
+                                fechamento = s;
+                                JOptionPane.showMessageDialog(null, "Conta fechada em: " + s + "\nValor a pagar: R$" + d.format(selected.getConta()), "Conta Fechada", JOptionPane.INFORMATION_MESSAGE);
                                 mesas.remove(selected);
                                 Mesa m = new Mesa(n, "Mesa " + n);
                                 mesas.add(m);
@@ -171,7 +183,12 @@ public class Janela extends JFrame {
                                 DecimalFormat d = new DecimalFormat();
                                 d.setMaximumFractionDigits(2);
                                 d.setMinimumFractionDigits(2);
-                                JOptionPane.showMessageDialog(null, "Conta fechada em: " + new Date() + "\nValor a pagar: R$" + d.format(selected.getConta()), "Conta Fechada", JOptionPane.INFORMATION_MESSAGE);
+                                Calendar c = Calendar.getInstance();
+                                Date data = c.getTime();
+                                SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                                String s = fmt.format(data);
+                                fechamento = s;
+                                JOptionPane.showMessageDialog(null, "Conta fechada em: " + s + "\nValor a pagar: R$" + d.format(selected.getConta()), "Conta Fechada", JOptionPane.INFORMATION_MESSAGE);
                                 mesas.remove(selected);
                                 Mesa m = new Mesa(n, "Mesa " + n);
                                 mesas.add(m);
@@ -186,9 +203,14 @@ public class Janela extends JFrame {
                     try {
                         fw = new FileWriter("historico.txt", true);
                         BufferedWriter bw = new BufferedWriter(fw);
+                        StringBuilder escritorArquivo = new StringBuilder();
                         DecimalFormat d = new DecimalFormat();
                         d.setMinimumFractionDigits(2);
                         d.setMaximumFractionDigits(2);
+                        Calendar c = Calendar.getInstance();
+                        //Date data = c.getTime();
+                        //SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                        //String s = fmt.format(data);
                         escritorArquivo.append("Pedido na mesa " + selected.getNumero() + " || ");
                         escritorArquivo.append("Valor final: R$" + d.format(selected.getConta()) + " || ");
                         escritorArquivo.append("10% do garçon: " + garcom);
@@ -197,7 +219,7 @@ public class Janela extends JFrame {
                         escritorArquivo.append("\n");
                         escritorArquivo.append("Aberto em " + selected.getAbertura());
                         escritorArquivo.append("\n");
-                        escritorArquivo.append("Fechado em " + new Date());
+                        escritorArquivo.append("Fechado em " + fechamento);
                         escritorArquivo.append("\n");
                         escritorArquivo.append("\n");
                         bw.write(escritorArquivo.toString());
