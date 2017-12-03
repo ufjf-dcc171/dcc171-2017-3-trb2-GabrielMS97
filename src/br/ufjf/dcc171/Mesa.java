@@ -1,6 +1,7 @@
 package br.ufjf.dcc171;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Mesa {
@@ -9,6 +10,7 @@ public class Mesa {
     private String nome;
     private List<Pedido> pedidos;
     private double conta = 0;
+    private Date abertura;
 
     public Mesa() {
         this(null, null);
@@ -56,4 +58,14 @@ public class Mesa {
     public void setConta(double conta) {
         this.conta += conta;
     }
+
+    public Date getAbertura() {
+        return abertura;
+    }
+
+    public void setAbertura(Date abertura) {
+        this.abertura = abertura;
+    }
+    
+    
 }

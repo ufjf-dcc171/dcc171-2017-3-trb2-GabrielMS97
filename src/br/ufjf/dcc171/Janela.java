@@ -33,7 +33,7 @@ public class Janela extends JFrame {
     private final JButton btnAddPedido = new JButton("Fazer Pedido");
     private final JButton btnExcluirItemPedido = new JButton("Excluir item do pedido");
     private final JButton btnFecharConta = new JButton("Fechar Conta");
-    private final JPanel painel1 = new JPanel(new GridLayout(5, 1));
+    private final JPanel painel1 = new JPanel(new GridLayout(6, 1));
     private final List<Mesa> mesas;
     private final JList<Mesa> lstMesas = new JList<>(new DefaultListModel<>());
     private final JList<Pedido> lstPedidos = new JList<>(new DefaultListModel<>());
@@ -79,6 +79,7 @@ public class Janela extends JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 Mesa selected = lstMesas.getSelectedValue();
+                selected.setAbertura(new Date());
                 if (selected == null) {
                     JOptionPane.showMessageDialog(null, "Selecione a mesa que fez o pedido!!", "Selecione uma mesa", JOptionPane.INFORMATION_MESSAGE);
                 } else {
@@ -190,10 +191,13 @@ public class Janela extends JFrame {
                         d.setMaximumFractionDigits(2);
                         escritorArquivo.append("Pedido na mesa " + selected.getNumero() + " || ");
                         escritorArquivo.append("Valor final: R$" + d.format(selected.getConta()) + " || ");
-                        escritorArquivo.append("10% do garçon: " + garcom + " || ");
-                        escritorArquivo.append("Fechado em " + new Date());
+                        escritorArquivo.append("10% do garçon: " + garcom);
                         escritorArquivo.append("\n");
                         escritorArquivo.append("Itens Pedidos " + selected.getPedidos());
+                        escritorArquivo.append("\n");
+                        escritorArquivo.append("Aberto em " + selected.getAbertura());
+                        escritorArquivo.append("\n");
+                        escritorArquivo.append("Fechado em " + new Date());
                         escritorArquivo.append("\n");
                         escritorArquivo.append("\n");
                         bw.write(escritorArquivo.toString());
