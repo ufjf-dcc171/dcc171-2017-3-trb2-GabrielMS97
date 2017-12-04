@@ -1,11 +1,36 @@
-# ufjf-dcc171-2017-3-trb1-GabrielMS97
-ufjf-dcc171-2017-3-trb1-GabrielMS97 created by GitHub Classroom
+# ufjf-dcc171-2017-3-trb2-GabrielMS97
+ufjf-dcc171-2017-3-trb2-GabrielMS97 created by GitHub Classroom
 
 <h2> Identificação </h2>
 
 Nome: Gabriel Martins Santana <br/>
 Matrícula: 201576002 <br/>
 Curso: Sistemas de Informação <br/>
+
+<h1>Relatório da segunda parte do trabalho</h1>
+
+<h2>Protocolo de persistência</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   A realização da persistência dos dados no sistema,ocorre sempre que um pedido for fechado. Quando a opreção de fechar um pedido é acionada, os dados deste pedido como seu valor final, sua lista de itens, seus horários de abertura e fechamento e a mesa que o realizou são registrados no arquivo "historico.txt".  
+</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   Para que este histórico seja acessado, foi criado um botão na janela principal que ao ser clicado, abre uma janela que irá mostrar o histórico de pedidos. Nesta janela há um botão para que os dados do arquivo "histórico.txt" sejam carregados em uma área de texto, mostrando todo o histórico de pedidos já feito. 
+</p>
+
+<h2> Melhorias Futuras </h2>
+<p>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Algumas funcionalidades podem ser implementadas para melhorar este sistema como:
+  <ul>
+    <li>Permitir que sejam adicionados novos itens ao cardápio da lanchonete, além dos itens padrão;</li>
+    <li>Criação de um banco de dados para tratar o armazenamento dos dados de uma melhor forma;</li>
+    <li>Adicionar uma funcionalidade para gerir pedidos de delivery;</li>
+    <li>Adicionar uma funcionalidade para gerir o estoque de mercadorias e ingredientes.</li>
+  </ul>
+</p>
+
+<h1>Relatório da primeira parte do trabalho</h1>
 
 <h2> Cenário do Sistema </h2>
 
@@ -81,16 +106,4 @@ Curso: Sistemas de Informação <br/>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   Apesar das dificuldades, foi muito interessante desenvolver este sistema. A partir dele pude fixar o que foi visto em sala de aula
   e também me surgiram ideias de novos sistemas e de melhorias para este que podem ser realizadas futuramente.
-</p>
-
-<h2> Melhorias Futuras </h2>
-<p>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  Algumas funcionalidades podem ser implementadas para melhorar este sistema como:
-  <ul>
-    <li>Permitir que sejam adicionados novos itens ao cardápio da lanchonete, além dos itens padrão;</li>
-    <li>Permitir a persistência dos dados de pedidos feitos no sistema;</li>
-    <li>Adicionar uma funcionalidade para gerir pedidos de delivery;</li>
-    <li>Adicionar uma funcionalidade para gerir o estoque de mercadorias e ingredientes.</li>
-  </ul>
 </p>
