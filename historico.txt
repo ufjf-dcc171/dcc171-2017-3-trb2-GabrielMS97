@@ -3,3 +3,18 @@ Itens Pedidos [X-Bacon - R$4,50| Quantidade: 2| Valor total: R$9,00, Coca-Cola 7
 Aberto em 03/12/2017 13:32:28
 Fechado em 03/12/2017 13:32:46
 
+Pedido na mesa 1 || Valor final: R$2,75 || 10% do garçon: SIM
+Itens Pedidos [Hambúrguer - R$2,50| Quantidade: 1| Valor total: R$2,50]
+Aberto em 05/12/2017 13:59:00
+Fechado em 05/12/2017 13:59:07
+
+Pedido na mesa 1 || Valor final: R$2,75 || 10% do garçon: SIM
+Itens Pedidos [Hambúrguer - R$2,50| Quantidade: 1| Valor total: R$2,50]
+Aberto em 05/12/2017 17:00:36
+Fechado em 05/12/2017 17:00:43
+
+Pedido na mesa 2 || Valor final: R$2,75 || 10% do garçon: SIM
+Itens Pedidos [Hambúrguer - R$2,50| Quantidade: 1| Valor total: R$2,50]
+Aberto em 05/12/2017 17:15:01
+Fechado em 05/12/2017 17:15:14
+

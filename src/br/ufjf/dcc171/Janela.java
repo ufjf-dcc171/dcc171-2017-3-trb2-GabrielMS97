@@ -197,36 +197,8 @@ public class Janela extends JFrame {
                                 lstPedidos.updateUI();
                             }
                         }
-                    }
-
-                    FileWriter fw;
-                    try {
-                        fw = new FileWriter("historico.txt", true);
-                        BufferedWriter bw = new BufferedWriter(fw);
-                        StringBuilder escritorArquivo = new StringBuilder();
-                        DecimalFormat d = new DecimalFormat();
-                        d.setMinimumFractionDigits(2);
-                        d.setMaximumFractionDigits(2);
-                        Calendar c = Calendar.getInstance();
-                        //Date data = c.getTime();
-                        //SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-                        //String s = fmt.format(data);
-                        escritorArquivo.append("Pedido na mesa " + selected.getNumero() + " || ");
-                        escritorArquivo.append("Valor final: R$" + d.format(selected.getConta()) + " || ");
-                        escritorArquivo.append("10% do garçon: " + garcom);
-                        escritorArquivo.append("\n");
-                        escritorArquivo.append("Itens Pedidos " + selected.getPedidos());
-                        escritorArquivo.append("\n");
-                        escritorArquivo.append("Aberto em " + selected.getAbertura());
-                        escritorArquivo.append("\n");
-                        escritorArquivo.append("Fechado em " + fechamento);
-                        escritorArquivo.append("\n");
-                        escritorArquivo.append("\n");
-                        bw.write(escritorArquivo.toString());
-                        bw.flush();
-                    } catch (IOException ex) {
-                        Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    }        
+                    Persistencia pers = new Persistencia(selected.getNumero(), selected.getConta(), garcom, selected.getPedidos(), selected.getAbertura(), fechamento);
                 }
             }
         });
